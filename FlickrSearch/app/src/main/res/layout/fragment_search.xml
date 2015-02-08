@@ -20,7 +20,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:id="@+id/editText" />
+            android:id="@+id/searchText" />
 
         <Button
             android:layout_alignParentTop="true"
@@ -33,7 +33,7 @@
         <ListView
             android:layout_marginTop="10dp"
             android:layout_below="@id/searchBtn"
-            android:id="@+id/imagesListView"
+            android:id="@+id/searchResultListView"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" />
     </RelativeLayout>

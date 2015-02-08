@@ -1,4 +1,4 @@
-package test.betsson.flickrsearch.network;
+package test.betsson.flickrsearch.network.volley;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -29,7 +29,6 @@ public class GsonRequest<T> extends Request<T> {
     private final Listener<T> listener;
     private final ErrorListener errorListener;
     private final Object request;
-    private static final String PROTOCOL_CHARSET = "utf-8";
 
     /**
      * Content type for request.

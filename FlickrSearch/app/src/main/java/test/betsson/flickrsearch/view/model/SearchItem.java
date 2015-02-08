@@ -5,18 +5,18 @@ package test.betsson.flickrsearch.view.model;
  */
 public class SearchItem {
 
-	private String imageUrl, imageTitle;
+    private String imageUrl, imageTitle;
 
-	public SearchItem(String imageUrl, String imageTitle) {
-		this.imageUrl = imageUrl;
-		this.imageTitle = imageTitle;
-	}
+    public SearchItem(String imageUrl, String imageTitle) {
+        this.imageUrl = imageUrl;
+        this.imageTitle = imageTitle;
+    }
 
-	public String getImageUrl() {
-		return imageUrl;
-	}
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-	public String getImageTitle() {
-		return imageTitle;
-	}
+    public String getImageTitle() {
+        return imageTitle;
+    }
 }
