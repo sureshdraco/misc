@@ -3,7 +3,7 @@ package test.betsson.flickrsearch.view.adapter;
 import test.betsson.flickrsearch.R;
 import test.betsson.flickrsearch.network.volley.VolleyClient;
 import test.betsson.flickrsearch.provider.ImageSearchContentProvider;
-import test.betsson.flickrsearch.view.model.ImageSearchResultItem;
+import test.betsson.flickrsearch.view.adapter.model.ImageSearchResultItem;
 
 import android.content.Context;
 import android.database.Cursor;

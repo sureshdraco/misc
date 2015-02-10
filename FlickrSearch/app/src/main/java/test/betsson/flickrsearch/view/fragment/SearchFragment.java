@@ -71,7 +71,7 @@ public class SearchFragment extends Fragment implements LoaderManager.LoaderCall
 			searchText.setError(getResources().getString(R.string.search_text_missing));
 			return false;
 		}
-		searchBtn.setError("");
+		searchText.setError(null);
 		return true;
 	}
 

@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 
 import test.betsson.flickrsearch.BuildConfig;
-import test.betsson.flickrsearch.view.model.ImageSearchResultItem;
+import test.betsson.flickrsearch.view.adapter.model.ImageSearchResultItem;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;

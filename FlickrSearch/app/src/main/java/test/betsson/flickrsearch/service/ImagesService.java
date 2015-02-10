@@ -8,7 +8,7 @@ import test.betsson.flickrsearch.network.flickr.response.SearchImageResponse;
 import test.betsson.flickrsearch.network.flickr.response.model.FlickrPhoto;
 import test.betsson.flickrsearch.provider.ImageSearchContentProvider;
 import test.betsson.flickrsearch.util.Constant;
-import test.betsson.flickrsearch.view.model.ImageSearchResultItem;
+import test.betsson.flickrsearch.view.adapter.model.ImageSearchResultItem;
 
 import android.app.Service;
 import android.content.Context;
@@ -47,8 +47,8 @@ public class ImagesService extends Service {
 		ApiRequests.searchImages(getApplicationContext(), searchText, new Response.Listener<SearchImageResponse>() {
 			@Override
 			public void onResponse(SearchImageResponse searchImageResponse) {
-				if (BuildConfig.DEBUG) Log.d(TAG, searchImageResponse.toString());
 				if (searchImageResponse.isSuccess()) {
+					if (BuildConfig.DEBUG) Log.d(TAG, searchImageResponse.toString());
 					handleImageSearchSuccess(searchImageResponse);
 				} else {
 					handleImageSearchFailed();
