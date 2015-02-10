@@ -1,18 +1,30 @@
 package test.betsson.flickrsearch.view.activity;
 
-import android.media.Image;
-import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
-
 import test.betsson.flickrsearch.R;
-import test.betsson.flickrsearch.service.ImagesService;
+import test.betsson.flickrsearch.view.custom.ActivityProgressIndicator;
+
+import android.app.Dialog;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 
 public class MainActivity extends FragmentActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ImagesService.initiateImageSearch(getApplicationContext(), "monkey");
-    }
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		Dialog dialog = null;
+
+		switch (id) {
+		case ActivityProgressIndicator.ACTIVITY_PROGRESS_LOADER:
+			dialog = new ActivityProgressIndicator(this, R.style.TransparentDialog);
+			break;
+		}
+		return dialog;
+	}
+
 }

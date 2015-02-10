@@ -2,30 +2,23 @@ package test.betsson.flickrsearch.network.flickr.response;
 
 import java.util.ArrayList;
 
+import test.betsson.flickrsearch.network.flickr.response.model.FlickrPhoto;
+
 /**
  * Created by suresh on 08/02/15.
  */
 public class SearchImageResponse extends BaseResponse {
-    private ArrayList<Photo> photos;
+	private Photos photos;
 
-    @Override
-    public String toString() {
-        return "photos=" + photos;
-    }
+	public ArrayList<FlickrPhoto> getPhotos() {
+		return photos.getPhotos();
+	}
 
-    public ArrayList<Photo> getPhotos() {
-        return photos;
-    }
+	class Photos {
+		private ArrayList<FlickrPhoto> photo;
 
-    public class Photo {
-        private String id, title;
-
-        public String getId() {
-            return id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-    }
+		public ArrayList<FlickrPhoto> getPhotos() {
+			return photo;
+		}
+	}
 }

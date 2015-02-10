@@ -35,7 +35,7 @@
             android:layout_below="@id/searchBtn"
             android:id="@+id/searchResultListView"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="fill_parent" />
     </RelativeLayout>
 
 </RelativeLayout>

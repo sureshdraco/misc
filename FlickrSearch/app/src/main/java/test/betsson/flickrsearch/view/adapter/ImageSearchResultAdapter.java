@@ -1,74 +1,74 @@
 package test.betsson.flickrsearch.view.adapter;
 
+import test.betsson.flickrsearch.R;
+import test.betsson.flickrsearch.network.volley.VolleyClient;
+import test.betsson.flickrsearch.provider.ImageSearchContentProvider;
+import test.betsson.flickrsearch.view.model.ImageSearchResultItem;
+
 import android.content.Context;
 import android.database.Cursor;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CursorAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import test.betsson.flickrsearch.R;
+import com.android.volley.toolbox.NetworkImageView;
 
 public class ImageSearchResultAdapter extends CursorAdapter {
 
-    private LayoutInflater layoutInflater;
-    private final Context context;
+	private LayoutInflater layoutInflater;
+	private final Context context;
 
-    public ImageSearchResultAdapter(Context context, Cursor c) {
-        super(context, c);
-        this.context = context;
-        this.layoutInflater = LayoutInflater.from(context);
-    }
+	public ImageSearchResultAdapter(Context context, Cursor c) {
+		super(context, c);
+		this.context = context;
+		this.layoutInflater = LayoutInflater.from(context);
+	}
 
-    @Override
-    public View newView(Context context, Cursor cursor, ViewGroup view) {
-        return null;
-    }
+	@Override
+	public View newView(Context context, Cursor cursor, ViewGroup view) {
+		return null;
+	}
 
-    public View getView(final int position, View convertView, final ViewGroup parent) {
+	public View getView(final int position, View convertView, final ViewGroup parent) {
 
-        ViewHolder viewHolder;
-        if (convertView == null) {
-//            convertView = layoutInflater.inflate(R.layout.row, null);
-//            viewHolder = new ViewHolder();
-//
-//            viewHolder.name = (TextView) convertView.findViewById(R.id.contactName);
-//            viewHolder.transferStatus = (ImageView) convertView.findViewById(R.id.transactionStatus);
-//            viewHolder.date = (TextView) convertView.findViewById(R.id.date);
-//            viewHolder.transferAmount = (TextView) convertView.findViewById(R.id.transferAmount);
-//            viewHolder.transferCharge = (TextView) convertView.findViewById(R.id.trasnferCharge);
-//            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (ViewHolder) convertView.getTag();
-            // remove tasks related to the recycled list item
-        }
+		ViewHolder viewHolder;
+		if (convertView == null) {
+			convertView = layoutInflater.inflate(R.layout.search_result_row, null);
+			viewHolder = new ViewHolder();
+			viewHolder.imageTitle = (TextView) convertView.findViewById(R.id.imageTitle);
+			viewHolder.networkImageView = (NetworkImageView) convertView.findViewById(R.id.image);
+			viewHolder.networkImageView.setDefaultImageResId(R.drawable.broken_image);
+			viewHolder.networkImageView.setErrorImageResId(R.drawable.broken_image);
+			convertView.setTag(viewHolder);
+		} else {
+			viewHolder = (ViewHolder) convertView.getTag();
+		}
 
-        getCursor().moveToPosition(position);
-        final Cursor cursor = getCursor();
-//        TransactionHistoryItem transactionHistoryItem = TransactionHistoryContentProvider.getTransactionHistoryItemFromCursor(getCursor(), context);
-//        if (transactionHistoryItem != null) {
-//            convertView.setVisibility(View.VISIBLE);
-//            setBackground(convertView, transactionHistoryItem);
-//            fillData(viewHolder, transactionHistoryItem);
-//            final String transferId = cursor.getString(cursor.getColumnIndex(TransactionHistoryTable.COLUMN_TRANSACTION_ID));
-//            convertView.setOnClickListener(new TransactionHistoryItemClick(transferId));
-//        } else {
-//            convertView.setVisibility(View.GONE);
-//        }
+		getCursor().moveToPosition(position);
+		ImageSearchResultItem imageSearchResultItem = ImageSearchContentProvider.getSearchResultItemFromCursor(getCursor());
+		if (imageSearchResultItem != null) {
+			convertView.setVisibility(View.VISIBLE);
+			fillData(viewHolder, imageSearchResultItem);
+		} else {
+			convertView.setVisibility(View.GONE);
+		}
 
-        return convertView;
-    }
+		return convertView;
+	}
 
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-    }
+	private void fillData(ViewHolder viewHolder, ImageSearchResultItem imageSearchResultItem) {
+		viewHolder.networkImageView.setImageUrl(imageSearchResultItem.getImageUrl(), VolleyClient.getInstance(context).getImageLoader());
+		viewHolder.imageTitle.setText(imageSearchResultItem.getImageTitle());
+	}
 
-    static class ViewHolder {
-        private TextView name, date, transferAmount, transferCharge;
-        private ImageView transferStatus;
-    }
+	@Override
+	public void bindView(View view, Context context, Cursor cursor) {
+	}
+
+	static class ViewHolder {
+		private TextView imageTitle;
+		private NetworkImageView networkImageView;
+	}
 }
